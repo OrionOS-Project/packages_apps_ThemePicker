@@ -23,4 +23,7 @@
     <!-- ID for the a11y actions on carousel -->
     <item type="id" name="action_scroll_forward" />
     <item type="id" name="action_scroll_backward" />
+     
+     <!-- Whether to show udfps animation customization or not -->
+    <bool name="config_show_udfps_animation_customization">true</bool>
 </resources>
