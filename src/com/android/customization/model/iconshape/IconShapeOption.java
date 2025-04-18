@@ -93,9 +93,12 @@ public class IconShapeOption implements CustomizationOption<IconShapeOption> {
         int primaryColor = ta.getColor(0, 0);
         ta.recycle();
         int foregroundColor =
-                ResourceUtils.getColorAttr(view.getContext(), android.R.attr.textColorPrimary);
+                ResourceUtils.getColorAttr(view.getContext(), 
+                    view.isActivated() 
+                        ? android.R.attr.colorAccent
+                        : android.R.attr.textColorPrimary);
 
-        foreground.setTint(ColorUtils.blendARGB(primaryColor, foregroundColor, .05f));
+        foreground.setTint(ColorUtils.blendARGB(primaryColor, foregroundColor, view.isActivated()  ? 1f : 0.05f));
 
         ((ImageView) view.findViewById(resId)).setImageDrawable(mShape);
         view.setContentDescription(mTitle);
