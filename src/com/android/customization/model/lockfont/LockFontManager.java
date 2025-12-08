@@ -27,11 +27,12 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 
 import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.theme.OverlayManagerCompat;
+
+import com.android.internal.util.android.Utils;
 
 import java.util.Map;
 import java.util.List;
@@ -110,13 +111,6 @@ public class LockFontManager implements CustomizationManager<LockFontOption> {
         }
     }
 
-    public void restartSystemUI() {
-        ContentResolver resolver = mContext.getContentResolver();
-        int currentValue = Settings.System.getInt(resolver, "system_ui_restart", 0);
-        int newValue = (currentValue == 0) ? 1 : 0;
-        Settings.System.putInt(resolver, "system_ui_restart", newValue);
-    }
-
     private boolean persistOverlay(LockFontOption toPersist) {
         String value = Settings.Secure.getStringForUser(mContext.getContentResolver(),
                 Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES, UserHandle.myUserId());
@@ -145,7 +139,7 @@ public class LockFontManager implements CustomizationManager<LockFontOption> {
                 Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES,
                 json.toString(), UserHandle.myUserId());
         // TODO: remove this until i find a way to rebuild keyguard blueprint views during theme changed
-        restartSystemUI();
+        Utils.restartSystemUI();
         return true;
     }
 
