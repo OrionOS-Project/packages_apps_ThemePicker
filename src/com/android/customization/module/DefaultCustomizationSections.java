@@ -15,8 +15,6 @@ import com.android.customization.model.iconpack.IconPackManager;
 import com.android.customization.model.iconpack.IconPackSectionController;
 import com.android.customization.model.iconshape.IconShapeManager;
 import com.android.customization.model.iconshape.IconShapeSectionController;
-import com.android.customization.model.lockfont.LockFontSectionController;
-import com.android.customization.model.lockfont.LockFontManager;
 import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
@@ -190,11 +188,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                         mKeyguardQuickAffordancePickerViewModelFactory)
                                         .get(KeyguardQuickAffordancePickerViewModel.class),
                                 lifecycleOwner));
-
-                // Lock font section.
-                sectionControllers.add(new LockFontSectionController(
-                        LockFontManager.getInstance(activity, new OverlayManagerCompat(activity)),
-                        sectionNavigationController));
 
                 // Notifications section.
                 sectionControllers.add(
